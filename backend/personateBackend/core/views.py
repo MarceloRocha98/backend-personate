@@ -7,17 +7,42 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from .models import User, Person, games_created, Challanges, points_x_system
 from .seralizers import UserSerializer, PersonSerializer, GamesCreatedSerializer, ChallangesSerializer, PointsXSystemSerializer
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+from core import permissions
+
+from rest_framework import filters
+
 # Create your views here.
 
 # @csrf_protect
 
+# class LoginViewSet(viewsets.ViewSet):
+#     """Checks email and password and return an auth token """
+#     # queryset=User.objects.all()
+#     serializer_class= AuthTokenSerializer
+
+#     def create(self,request):
+#         """Use the ObtainAuthToken APIView to validate and create a token """
+
+#         return ObtainAuthToken().post(request)
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=UserSerializer
+    authentication_classes = (TokenAuthentication,)
+    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    filter_backends =(filters.SearchFilter,)
+    search_fields=('name','email',)
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset=Person.objects.all()
     serializer_class=PersonSerializer
+    
 
 class GamesCreatedViewSet(viewsets.ModelViewSet):
     queryset = games_created.objects.all()
