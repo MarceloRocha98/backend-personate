@@ -20,10 +20,12 @@ class PostOwnStatus(permissions.BasePermission):
 
     def has_object_permission(self,request,view,obj):
         # print(obj.user.id)
-        # print(request.user.id)
+        print(request.user.id)
+        print(obj.user_id.id)
         # print('teste')
         """Checks the users is trying to update their own status """
 
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.id==request.user.id
+    
+        return obj.user_id.id == request.user.id

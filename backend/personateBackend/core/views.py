@@ -12,6 +12,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.decorators import permission_classes
 
 from core import permissions
 
@@ -35,7 +36,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=UserSerializer
     authentication_classes = (TokenAuthentication,)
-    permissions_classes=(permissions.UpdateOwnProfile,)
+    permission_classes=(permissions.UpdateOwnProfile,)
     # permissions_classes=(permissions. , IsAuthenticatedOrReadOnly)
     filter_backends =(filters.SearchFilter,)
     search_fields=('username','email',)
@@ -44,26 +45,27 @@ class PersonViewSet(viewsets.ModelViewSet):
     queryset=Person.objects.all()
     serializer_class=PersonSerializer
     authentication_classes = (TokenAuthentication,)
-    permissions_classes=(permissions.UpdateOwnProfile,)
+    permission_classes=(permissions.UpdateOwnProfile,)
     
 
 class GamesCreatedViewSet(viewsets.ModelViewSet):
     queryset = games_created.objects.all()
     serializer_class= GamesCreatedSerializer
     authentication_classes = (TokenAuthentication,)
-    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
 
 class ChallangesViewSet(viewsets.ModelViewSet):
     queryset = Challanges.objects.all()
     serializer_class= ChallangesSerializer
-    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
  
 
 class PointsXSystemViewSet(viewsets.ModelViewSet):
     queryset = points_x_system.objects.all()
     serializer_class = PointsXSystemSerializer
     authentication_classes = (TokenAuthentication,)
-    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    # permissions_classes=( IsAuthenticatedOrReadOnly)
+    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly,)
 
 @login_required(login_url='/login/')
 def logout_user(request):
