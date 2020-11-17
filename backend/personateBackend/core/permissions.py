@@ -6,6 +6,9 @@ class UpdateOwnProfile(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         """Check user is trying to edit their own profile"""
+        # print(obj.user.id)
+        # print(request.user.id)
+        # print('teste')
         if request.method in permissions.SAFE_METHODS:
             return True
 
@@ -16,8 +19,11 @@ class PostOwnStatus(permissions.BasePermission):
     """Allow users to update their own status. """
 
     def has_object_permission(self,request,view,obj):
+        # print(obj.user.id)
+        # print(request.user.id)
+        # print('teste')
         """Checks the users is trying to update their own status """
 
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.user.id==request.user.id
+        return obj.id==request.user.id

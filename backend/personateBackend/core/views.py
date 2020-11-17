@@ -35,26 +35,35 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=UserSerializer
     authentication_classes = (TokenAuthentication,)
-    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    permissions_classes=(permissions.UpdateOwnProfile,)
+    # permissions_classes=(permissions. , IsAuthenticatedOrReadOnly)
     filter_backends =(filters.SearchFilter,)
-    search_fields=('name','email',)
+    search_fields=('username','email',)
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset=Person.objects.all()
     serializer_class=PersonSerializer
+    authentication_classes = (TokenAuthentication,)
+    permissions_classes=(permissions.UpdateOwnProfile,)
     
 
 class GamesCreatedViewSet(viewsets.ModelViewSet):
     queryset = games_created.objects.all()
     serializer_class= GamesCreatedSerializer
+    authentication_classes = (TokenAuthentication,)
+    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
 
 class ChallangesViewSet(viewsets.ModelViewSet):
     queryset = Challanges.objects.all()
     serializer_class= ChallangesSerializer
+    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+ 
 
 class PointsXSystemViewSet(viewsets.ModelViewSet):
     queryset = points_x_system.objects.all()
     serializer_class = PointsXSystemSerializer
+    authentication_classes = (TokenAuthentication,)
+    permissions_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
 
 @login_required(login_url='/login/')
 def logout_user(request):

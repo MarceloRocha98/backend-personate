@@ -5,7 +5,7 @@ from .models import User, Person, games_created, Challanges, points_x_system
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields=('id','email','username','password')
+        fields=('id','email','username')
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
