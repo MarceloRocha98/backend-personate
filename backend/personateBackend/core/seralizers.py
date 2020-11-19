@@ -15,7 +15,7 @@ class PersonSerializer(serializers.ModelSerializer):
 class GamesCreatedSerializer(serializers.ModelSerializer):
     class Meta:
         model = games_created
-        fields=('user_id','game_name','url_img1','url_img2','url_img3','nome1_img1','nome2_img1','nome3_img1','nome1_img2','nome2_img2','nome3_img2','nome1_img3','nome2_img3','nome3_img3')
+        fields=('id','user_id','game_name','url_img1','url_img2','url_img3','nome1_img1','nome2_img1','nome3_img1','nome1_img2','nome2_img2','nome3_img2','nome1_img3','nome2_img3','nome3_img3')
 
 class ChallangesSerializer(serializers.ModelSerializer):
     class Meta:

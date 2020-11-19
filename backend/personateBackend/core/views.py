@@ -45,7 +45,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     queryset=Person.objects.all()
     serializer_class=PersonSerializer
     authentication_classes = (TokenAuthentication,)
-    permission_classes=(permissions.UpdateOwnProfile,)
+    permission_classes=(permissions.UpdateOwnProfile,IsAuthenticatedOrReadOnly)
     
 
 class GamesCreatedViewSet(viewsets.ModelViewSet):
@@ -65,7 +65,7 @@ class PointsXSystemViewSet(viewsets.ModelViewSet):
     serializer_class = PointsXSystemSerializer
     authentication_classes = (TokenAuthentication,)
     # permissions_classes=( IsAuthenticatedOrReadOnly)
-    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly,)
+    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
 
 @login_required(login_url='/login/')
 def logout_user(request):

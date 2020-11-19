@@ -2,8 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Person(User):
+# class Person(User):
+#     chal_win=models.IntegerField(default=0)
+#     # user_id=models.ForeignKey(User,on_delete=models.CASCADE,related_name='userid')
+
+#     def __str__(self):
+#         return str(self.id)
+
+#     class Meta:
+#         db_table='person'
+
+class Person(models.Model):
     chal_win=models.IntegerField(default=0)
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
     # user_id=models.ForeignKey(User,on_delete=models.CASCADE,related_name='userid')
 
     def __str__(self):

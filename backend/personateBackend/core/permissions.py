@@ -27,5 +27,5 @@ class PostOwnStatus(permissions.BasePermission):
 
         if request.method in permissions.SAFE_METHODS:
             return True
-    
+        
         return obj.user_id.id == request.user.id
