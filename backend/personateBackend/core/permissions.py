@@ -29,3 +29,14 @@ class PostOwnStatus(permissions.BasePermission):
             return True
         
         return obj.user_id.id == request.user.id
+
+class handleChallange(permissions.BasePermission):
+    """Allow user challanged refuse the challange"""
+    def has_object_permission(self,request,view,obj):
+        print(obj.id)
+        # print(obj.challanged_id)
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        return obj.id == request.user.id
+

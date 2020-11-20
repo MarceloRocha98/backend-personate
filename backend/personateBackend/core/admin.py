@@ -29,4 +29,4 @@ class points_x_system(admin.ModelAdmin):
 
 @admin.register(system_images)
 class system_images(admin.ModelAdmin):
-    list_display=['id','admin_id','url_img','nome1','nome2','nome3','difficulty']
+    list_display=['id','admin_id','url_img','nome1','nome2','nome3','nome_certo','difficulty']

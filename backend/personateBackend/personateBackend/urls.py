@@ -17,7 +17,7 @@ from django.urls import path, include
 from core import views
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from . import settings
-from core.views import UserViewSet,PersonViewSet, GamesCreatedViewSet, ChallangesViewSet, PointsXSystemViewSet
+from core.views import UserViewSet,PersonViewSet, GamesCreatedViewSet, ChallangesViewSet, PointsXSystemViewSet, system_imagesViewSet
 from rest_framework import routers
 
 
@@ -28,6 +28,7 @@ router.register(r'person',PersonViewSet)
 router.register(r'GamesCreated',GamesCreatedViewSet)
 router.register(r'Challanges',ChallangesViewSet)
 router.register(r'rank',PointsXSystemViewSet)
+router.register(r'system_images',system_imagesViewSet)
 # router.register(r'login',LoginViewSet,basename='login')
 
 

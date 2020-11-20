@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework import viewsets
-from .models import User, Person, games_created, Challanges, points_x_system
-from .seralizers import UserSerializer, PersonSerializer, GamesCreatedSerializer, ChallangesSerializer, PointsXSystemSerializer
+from .models import User, Person, games_created, Challanges, points_x_system, system_images
+from .seralizers import UserSerializer, PersonSerializer, GamesCreatedSerializer, ChallangesSerializer, PointsXSystemSerializer, system_imagesSerializer
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
@@ -57,7 +57,7 @@ class GamesCreatedViewSet(viewsets.ModelViewSet):
 class ChallangesViewSet(viewsets.ModelViewSet):
     queryset = Challanges.objects.all()
     serializer_class= ChallangesSerializer
-    permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+    permission_classes=(permissions.handleChallange, IsAuthenticatedOrReadOnly)
  
 
 class PointsXSystemViewSet(viewsets.ModelViewSet):
@@ -66,6 +66,13 @@ class PointsXSystemViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     # permissions_classes=( IsAuthenticatedOrReadOnly)
     permission_classes=(permissions.PostOwnStatus, IsAuthenticatedOrReadOnly)
+
+class system_imagesViewSet(viewsets.ModelViewSet):
+    queryset= system_images.objects.all()
+    serializer_class = system_imagesSerializer
+    authentication_classes=(TokenAuthentication,)
+   
+
 
 @login_required(login_url='/login/')
 def logout_user(request):

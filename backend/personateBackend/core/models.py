@@ -27,11 +27,11 @@ class Person(models.Model):
 class Challanges(models.Model):
      challanger_id=models.ForeignKey(User,on_delete=models.CASCADE,related_name='challanger_id')
      challanged_id=models.ForeignKey(User,on_delete=models.CASCADE,related_name='challanged_id')
-     challanger_points=models.CharField(max_length=5000)
-     challanged_points=models.CharField(max_length=5000)
+     challanger_points=models.CharField(max_length=5000,default=0)
+     challanged_points=models.CharField(max_length=5000,default=0)
      challanger_finish=models.BooleanField(default=False)
      challanged_finish=models.BooleanField(default=False)
-     challanged_accepted=models.BooleanField(default=False)
+     challanged_accepted=models.BooleanField(default=None)
 
      def __str__(self):
          return str(self.id)
@@ -57,6 +57,7 @@ class system_images(models.Model):
         nome1=models.CharField(max_length=100)
         nome2=models.CharField(max_length=100)
         nome3=models.CharField(max_length=100)
+        nome_certo=models.CharField(max_length=100,default='0')
         difficulty=models.IntegerField()
 
         def __str__(self):
@@ -80,6 +81,9 @@ class games_created(models.Model):
     nome1_img3=models.TextField()
     nome2_img3=models.TextField()
     nome3_img3=models.TextField()
+    nome_certo_img1=models.CharField(max_length=100,default='0')
+    nome_certo_img2=models.CharField(max_length=100,default='0')
+    nome_certo_img3=models.CharField(max_length=100,default='0')
 
     def __str__(self):
         return str(self.id)
