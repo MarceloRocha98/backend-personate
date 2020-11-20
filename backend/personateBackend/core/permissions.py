@@ -37,6 +37,8 @@ class handleChallange(permissions.BasePermission):
         # print(obj.challanged_id)
         if request.method in permissions.SAFE_METHODS:
             return True
-        
-        return obj.id == request.user.id
+        # print(obj)
+        # print(obj.challanger_id)
+        # print(obj.challanged_id)
+        return obj.challanger_id.id == request.user.id or obj.challanged_id.id == request.user.id
 
