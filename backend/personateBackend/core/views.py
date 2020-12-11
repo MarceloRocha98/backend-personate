@@ -45,7 +45,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     queryset=Person.objects.all()
     serializer_class=PersonSerializer
     authentication_classes = (TokenAuthentication,)
-    permission_classes=(permissions.UpdateOwnProfile,IsAuthenticatedOrReadOnly)
+    # permission_classes=(IsAuthenticatedOrReadOnly)
     
 
 class GamesCreatedViewSet(viewsets.ModelViewSet):

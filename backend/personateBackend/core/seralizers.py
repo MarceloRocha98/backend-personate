@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields=('id','chal_win')
+        fields=('id','chal_win','user_id')
 
 class GamesCreatedSerializer(serializers.ModelSerializer):
     class Meta:

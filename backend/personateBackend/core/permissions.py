@@ -42,3 +42,5 @@ class handleChallange(permissions.BasePermission):
         # print(obj.challanged_id)
         return obj.challanger_id.id == request.user.id or obj.challanged_id.id == request.user.id
 
+
+
